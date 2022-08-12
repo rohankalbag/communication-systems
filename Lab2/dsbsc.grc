@@ -78,7 +78,7 @@ blocks:
     bus_structure: null
     coordinate: [24, 548.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: analog_sig_source_x_1
   id: analog_sig_source_x
   parameters:
@@ -120,9 +120,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [608, 524.0]
+    coordinate: [616, 564.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: audio_sink_0
   id: audio_sink
   parameters:
@@ -137,9 +137,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1704, 796.0]
+    coordinate: [1712, 836.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: audio_sink_0_0
   id: audio_sink
   parameters:
@@ -190,9 +190,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 488.0]
+    coordinate: [872, 520.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_wavfile_source_0
   id: blocks_wavfile_source
   parameters:
@@ -210,7 +210,7 @@ blocks:
     bus_structure: null
     coordinate: [0, 708.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: low_pass_filter_0
   id: low_pass_filter
   parameters:
@@ -232,9 +232,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1248, 452.0]
+    coordinate: [1264, 484.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -285,7 +285,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: Modulated FT
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -394,7 +394,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1048, 684.0]
+    coordinate: [1056, 724.0]
     rotation: 0
     state: disabled
 - name: qtgui_freq_sink_x_0_1_0
@@ -447,7 +447,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: Input FT
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -477,7 +477,88 @@ blocks:
     bus_structure: null
     coordinate: [296, 876.0]
     rotation: 0
-    state: disabled
+    state: enabled
+- name: qtgui_freq_sink_x_0_1_0_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: audio_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Final Demodulated FT
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: float
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1704, 940.0]
+    rotation: 0
+    state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -531,7 +612,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: Modulated Signal
     nconnections: '1'
     size: '1024'
     srate: quadrature_rate
@@ -669,7 +750,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1056, 572.0]
+    coordinate: [1064, 612.0]
     rotation: 0
     state: disabled
 - name: qtgui_time_sink_x_0_0_0
@@ -822,7 +903,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: Final Demodulated Signal
     nconnections: '1'
     size: '1024'
     srate: audio_rate
@@ -863,7 +944,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1712, 604.0]
+    coordinate: [1720, 644.0]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0
@@ -903,9 +984,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1472, 668.0]
+    coordinate: [1480, 708.0]
     rotation: 0
-    state: true
+    state: enabled
 
 connections:
 - [analog_sig_source_x_0, '0', qtgui_freq_sink_x_0_1_0, '0']
@@ -926,6 +1007,7 @@ connections:
 - [low_pass_filter_0, '0', rational_resampler_xxx_0_0, '0']
 - [rational_resampler_xxx_0, '0', blocks_multiply_xx_0, '0']
 - [rational_resampler_xxx_0_0, '0', audio_sink_0, '0']
+- [rational_resampler_xxx_0_0, '0', qtgui_freq_sink_x_0_1_0_0, '0']
 - [rational_resampler_xxx_0_0, '0', qtgui_time_sink_x_0_0_0_0, '0']
 
 metadata:

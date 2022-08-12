@@ -142,7 +142,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 44.0]
+    coordinate: [568, 28.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_1_2
@@ -183,7 +183,7 @@ blocks:
     bus_structure: null
     coordinate: [2040, 596.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: audio_sink_0_0
   id: audio_sink
   parameters:
@@ -396,7 +396,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: 'SSB USB Modulated '
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -426,7 +426,7 @@ blocks:
     bus_structure: null
     coordinate: [1184, 108.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_freq_sink_x_0_0
   id: qtgui_freq_sink_x
   parameters:
@@ -558,7 +558,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: Final Demodulated
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -588,7 +588,7 @@ blocks:
     bus_structure: null
     coordinate: [2040, 660.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_freq_sink_x_0_1_0
   id: qtgui_freq_sink_x
   parameters:
@@ -820,7 +820,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: FInal Demodulated
     nconnections: '1'
     size: '1024'
     srate: audio_rate
@@ -861,7 +861,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2040, 516.0]
+    coordinate: [2040, 468.0]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0
