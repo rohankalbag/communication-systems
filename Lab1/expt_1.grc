@@ -59,7 +59,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [824, 204.0]
+    coordinate: [632, 204.0]
     rotation: 0
     state: true
 - name: blocks_repeat_0
@@ -77,7 +77,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 204.0]
+    coordinate: [248, 204.0]
     rotation: 0
     state: true
 - name: blocks_vco_f_0
@@ -95,7 +95,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 188.0]
+    coordinate: [440, 188.0]
     rotation: 0
     state: true
 - name: blocks_vector_source_x_0
