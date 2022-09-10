@@ -243,12 +243,12 @@ class iqmod(gr.top_block, Qt.QWidget):
 
     def set_quadrature_rate(self, quadrature_rate):
         self.quadrature_rate = quadrature_rate
-        self.qtgui_time_sink_x_0_0.set_samp_rate(self.quadrature_rate)
-        self.analog_sig_source_x_0_1_0.set_sampling_freq(self.quadrature_rate)
         self.analog_sig_source_x_0_1.set_sampling_freq(self.quadrature_rate)
-        self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.quadrature_rate)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.quadrature_rate, 11000, 500, window.WIN_HAMMING, 6.76))
+        self.analog_sig_source_x_0_1_0.set_sampling_freq(self.quadrature_rate)
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.quadrature_rate, 11000, 500, window.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.quadrature_rate, 11000, 500, window.WIN_HAMMING, 6.76))
+        self.qtgui_freq_sink_x_0_0.set_frequency_range(0, self.quadrature_rate)
+        self.qtgui_time_sink_x_0_0.set_samp_rate(self.quadrature_rate)
 
     def get_audio_rate(self):
         return self.audio_rate

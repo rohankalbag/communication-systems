@@ -80,7 +80,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 324.0]
+    coordinate: [624, 228.0]
     rotation: 0
     state: true
 - name: blocks_wavfile_source_0
@@ -123,6 +123,30 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [432, 164.0]
+    rotation: 0
+    state: disabled
+- name: low_pass_filter_1
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: '5000'
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: interp_fir_filter_fff
+    width: '100'
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 180.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -205,12 +229,13 @@ blocks:
     bus_structure: null
     coordinate: [688, 196.0]
     rotation: 0
-    state: true
+    state: disabled
 
 connections:
 - [blocks_wavfile_source_0, '0', low_pass_filter_0, '0']
-- [low_pass_filter_0, '0', audio_sink_0, '0']
+- [blocks_wavfile_source_0, '0', low_pass_filter_1, '0']
 - [low_pass_filter_0, '0', qtgui_freq_sink_x_0, '0']
+- [low_pass_filter_1, '0', audio_sink_0, '0']
 
 metadata:
   file_format: 1

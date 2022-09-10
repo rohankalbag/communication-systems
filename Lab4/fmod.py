@@ -190,7 +190,7 @@ class fmod(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1 = qtgui.time_sink_f(
             1024, #size
             quad_rate, #samp_rate
-            "", #name
+            "Modulated Signal", #name
             1, #number of inputs
             None # parent
         )
