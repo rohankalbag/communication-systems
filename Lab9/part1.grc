@@ -86,7 +86,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 212.0]
+    coordinate: [72, 228.0]
+    rotation: 0
+    state: true
+- name: analog_random_source_x_0_0
+  id: analog_random_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: '2'
+    maxoutbuf: '0'
+    min: '0'
+    minoutbuf: '0'
+    num_samps: '1000'
+    repeat: 'True'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 108.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -271,7 +291,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: 20*sps
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -290,7 +310,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '4'
+    delay: 4*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -309,7 +329,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '4'
+    delay: 4*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -328,7 +348,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '3'
+    delay: 3*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -347,7 +367,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '3'
+    delay: 3*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -366,7 +386,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '2'
+    delay: 2*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -385,7 +405,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '2'
+    delay: 2*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -404,7 +424,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: 20*sps
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -423,7 +443,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: (20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -442,7 +462,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: 20*sps
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -723,6 +743,23 @@ blocks:
     coordinate: [2248, 336.0]
     rotation: 0
     state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 108.0]
+    rotation: 0
+    state: true
 - name: digital_chunks_to_symbols_xx_0
   id: digital_chunks_to_symbols_xx
   parameters:
@@ -741,6 +778,26 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [424, 220.0]
+    rotation: 0
+    state: true
+- name: digital_chunks_to_symbols_xx_0_0
+  id: digital_chunks_to_symbols_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dimension: '1'
+    in_type: byte
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    out_type: complex
+    symbol_table: '[-1,1]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 116.0]
     rotation: 0
     state: true
 - name: fir_filter_xxx_0
@@ -1102,6 +1159,7 @@ blocks:
 
 connections:
 - [analog_random_source_x_0, '0', digital_chunks_to_symbols_xx_0, '0']
+- [analog_random_source_x_0_0, '0', digital_chunks_to_symbols_xx_0_0, '0']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
 - [analog_sig_source_x_0_0, '0', blocks_multiply_xx_1, '1']
 - [analog_sig_source_x_0_0_0, '0', blocks_multiply_xx_1_0, '0']
@@ -1140,6 +1198,7 @@ connections:
 - [blocks_multiply_xx_1, '0', low_pass_filter_0, '0']
 - [blocks_multiply_xx_1_0, '0', low_pass_filter_0_0, '0']
 - [digital_chunks_to_symbols_xx_0, '0', interp_fir_filter_xxx_0, '0']
+- [digital_chunks_to_symbols_xx_0_0, '0', blocks_null_sink_0, '0']
 - [fir_filter_xxx_0, '0', qtgui_const_sink_x_1, '0']
 - [interp_fir_filter_xxx_0, '0', root_raised_cosine_filter_0, '0']
 - [low_pass_filter_0, '0', blocks_add_xx_1_0_0, '0']

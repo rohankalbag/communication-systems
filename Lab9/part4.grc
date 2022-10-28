@@ -374,7 +374,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: (20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -393,7 +393,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '4'
+    delay: 4*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -412,7 +412,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '4'
+    delay: 4*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -431,7 +431,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '3'
+    delay: 3*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -450,7 +450,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '3'
+    delay: 3*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -469,7 +469,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '2'
+    delay: 2*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -488,7 +488,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '2'
+    delay: 2*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -507,7 +507,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: (20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -526,7 +526,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: 1*(20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -545,7 +545,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    delay: '1'
+    delay: (20*sps)
     maxoutbuf: '0'
     minoutbuf: '0'
     num_ports: '1'
@@ -752,6 +752,24 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1480, 496.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_1
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '200'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4232, 412.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -1027,7 +1045,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [4288, 416.0]
+    coordinate: [4528, 428.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -1108,6 +1126,7 @@ connections:
 - [blocks_multiply_const_vxx_0_0_3, '0', blocks_add_xx_1_0, '1']
 - [blocks_multiply_const_vxx_0_0_3_0, '0', blocks_add_xx_1_0_0, '1']
 - [blocks_multiply_const_vxx_0_1, '0', blocks_add_xx_0_0, '1']
+- [blocks_multiply_const_vxx_1, '0', qtgui_const_sink_x_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_add_xx_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_delay_0, '0']
 - [blocks_multiply_xx_0_0, '0', blocks_add_xx_0_0, '0']
@@ -1115,7 +1134,7 @@ connections:
 - [blocks_multiply_xx_1, '0', low_pass_filter_0_1, '0']
 - [blocks_multiply_xx_1_0, '0', low_pass_filter_0_0_0, '0']
 - [digital_chunks_to_symbols_xx_0, '0', pfb_arb_resampler_xxx_0, '0']
-- [digital_pfb_clock_sync_xxx_0, '0', qtgui_const_sink_x_0, '0']
+- [digital_pfb_clock_sync_xxx_0, '0', blocks_multiply_const_vxx_1, '0']
 - [low_pass_filter_0_0_0, '0', blocks_add_xx_1_0, '0']
 - [low_pass_filter_0_0_0, '0', blocks_delay_0_0_0_0_0, '0']
 - [low_pass_filter_0_0_0, '0', blocks_delay_0_0_0_1, '0']
