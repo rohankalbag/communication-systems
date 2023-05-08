@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: fmod
+# Title: Not titled yet
 # GNU Radio version: 3.9.5.0
 
 from distutils.version import StrictVersion
@@ -39,12 +39,12 @@ from gnuradio import eng_notation
 
 from gnuradio import qtgui
 
-class fmod(gr.top_block, Qt.QWidget):
+class pmod(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "fmod", catch_exceptions=True)
+        gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("fmod")
+        self.setWindowTitle("Not titled yet")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -62,7 +62,7 @@ class fmod(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "fmod")
+        self.settings = Qt.QSettings("GNU Radio", "pmod")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -235,16 +235,14 @@ class fmod(gr.top_block, Qt.QWidget):
 
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_1_win)
-        self.iir_filter_xxx_1_0 = filter.iir_filter_ffd([1], [1, 0.95], True)
-        self.iir_filter_xxx_1 = filter.iir_filter_ffd([1, -0.95], [1], True)
         self.iir_filter_xxx_0 = filter.iir_filter_ffd([1/samp_rate], [1,1], True)
-        self.hilbert_fc_0 = filter.hilbert_fc(1064, window.WIN_HAMMING, 6.76)
+        self.hilbert_fc_0 = filter.hilbert_fc(65, window.WIN_HAMMING, 6.76)
         self.dc_blocker_xx_0 = filter.dc_blocker_ff(32, True)
-        self.blocks_sub_xx_0 = blocks.sub_ff(1)
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_float*1)
+        self.blocks_multiply_xx_1 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(quad_rate)
-        self.blocks_delay_1 = blocks.delay(gr.sizeof_float*1, 1)
+        self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 1)
+        self.blocks_conjugate_cc_0 = blocks.conjugate_cc()
         self.blocks_complex_to_float_0 = blocks.complex_to_float(1)
         self.blocks_complex_to_arg_1 = blocks.complex_to_arg(1)
         self.blocks_add_xx_1 = blocks.add_vff(1)
@@ -252,8 +250,8 @@ class fmod(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_0_1 = analog.sig_source_c(quad_rate, analog.GR_COS_WAVE, 100000, 0.5, 0, 0)
         self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1100, 0.5, 0, 0)
         self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 11000, 0.5, 0, 0)
-        self.analog_phase_modulator_fc_0 = analog.phase_modulator_fc((2*3.14*75000))
-        self.analog_noise_source_x_2 = analog.noise_source_f(analog.GR_GAUSSIAN, 0, 0)
+        self.analog_phase_modulator_fc_0 = analog.phase_modulator_fc(2*3.14*75000)
+        self.analog_noise_source_x_2 = analog.noise_source_f(analog.GR_GAUSSIAN, 0.2, 0)
 
 
         ##################################################
@@ -264,29 +262,27 @@ class fmod(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_add_xx_0, 1))
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.analog_sig_source_x_0_1, 0), (self.blocks_multiply_xx_0, 1))
-        self.connect((self.blocks_add_xx_0, 0), (self.iir_filter_xxx_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.qtgui_time_sink_x_1_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.blocks_add_xx_1, 0), (self.hilbert_fc_0, 0))
-        self.connect((self.blocks_complex_to_arg_1, 0), (self.blocks_delay_1, 0))
-        self.connect((self.blocks_complex_to_arg_1, 0), (self.blocks_sub_xx_0, 0))
+        self.connect((self.blocks_complex_to_arg_1, 0), (self.rational_resampler_xxx_1, 0))
         self.connect((self.blocks_complex_to_float_0, 0), (self.blocks_add_xx_1, 0))
         self.connect((self.blocks_complex_to_float_0, 1), (self.blocks_null_sink_0, 0))
         self.connect((self.blocks_complex_to_float_0, 0), (self.qtgui_time_sink_x_1, 0))
-        self.connect((self.blocks_delay_1, 0), (self.blocks_sub_xx_0, 1))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.rational_resampler_xxx_1, 0))
+        self.connect((self.blocks_conjugate_cc_0, 0), (self.blocks_multiply_xx_1, 1))
+        self.connect((self.blocks_delay_0, 0), (self.blocks_conjugate_cc_0, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_complex_to_float_0, 0))
-        self.connect((self.blocks_sub_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))
-        self.connect((self.dc_blocker_xx_0, 0), (self.qtgui_time_sink_x_2, 0))
-        self.connect((self.hilbert_fc_0, 0), (self.blocks_complex_to_arg_1, 0))
-        self.connect((self.iir_filter_xxx_0, 0), (self.iir_filter_xxx_1, 0))
-        self.connect((self.iir_filter_xxx_1, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.iir_filter_xxx_1_0, 0), (self.dc_blocker_xx_0, 0))
+        self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_complex_to_arg_1, 0))
+        self.connect((self.dc_blocker_xx_0, 0), (self.iir_filter_xxx_0, 0))
+        self.connect((self.hilbert_fc_0, 0), (self.blocks_delay_0, 0))
+        self.connect((self.hilbert_fc_0, 0), (self.blocks_multiply_xx_1, 0))
+        self.connect((self.iir_filter_xxx_0, 0), (self.qtgui_time_sink_x_2, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.analog_phase_modulator_fc_0, 0))
-        self.connect((self.rational_resampler_xxx_1, 0), (self.iir_filter_xxx_1_0, 0))
+        self.connect((self.rational_resampler_xxx_1, 0), (self.dc_blocker_xx_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "fmod")
+        self.settings = Qt.QSettings("GNU Radio", "pmod")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -310,13 +306,12 @@ class fmod(gr.top_block, Qt.QWidget):
     def set_quad_rate(self, quad_rate):
         self.quad_rate = quad_rate
         self.analog_sig_source_x_0_1.set_sampling_freq(self.quad_rate)
-        self.blocks_multiply_const_vxx_0.set_k(self.quad_rate)
         self.qtgui_time_sink_x_1.set_samp_rate(self.quad_rate)
 
 
 
 
-def main(top_block_cls=fmod, options=None):
+def main(top_block_cls=pmod, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

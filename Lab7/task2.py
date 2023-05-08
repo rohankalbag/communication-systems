@@ -172,7 +172,7 @@ class task2(gr.top_block, Qt.QWidget):
         self.qtgui_eye_sink_x_0.set_samp_per_symbol(sps)
         self.qtgui_eye_sink_x_0.set_y_axis(-1, 1)
 
-        self.qtgui_eye_sink_x_0.set_y_label('Amplitude', "")
+        self.qtgui_eye_sink_x_0.set_y_label('Amplitude', "Inbuilt Eye Sink")
 
         self.qtgui_eye_sink_x_0.enable_tags(True)
         self.qtgui_eye_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
@@ -209,13 +209,13 @@ class task2(gr.top_block, Qt.QWidget):
 
         self._qtgui_eye_sink_x_0_win = sip.wrapinstance(self.qtgui_eye_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_eye_sink_x_0_win)
-        self.interp_fir_filter_xxx_0_2 = filter.interp_fir_filter_fff(sps, [1,1,1])
+        self.interp_fir_filter_xxx_0_2 = filter.interp_fir_filter_fff(sps, [1])
         self.interp_fir_filter_xxx_0_2.declare_sample_delay(0)
-        self.interp_fir_filter_xxx_0_1 = filter.interp_fir_filter_fff(sps, [1,1,1])
+        self.interp_fir_filter_xxx_0_1 = filter.interp_fir_filter_fff(sps, [1])
         self.interp_fir_filter_xxx_0_1.declare_sample_delay(0)
-        self.interp_fir_filter_xxx_0_0 = filter.interp_fir_filter_fff(sps, [1,1,1])
+        self.interp_fir_filter_xxx_0_0 = filter.interp_fir_filter_fff(sps, [1])
         self.interp_fir_filter_xxx_0_0.declare_sample_delay(0)
-        self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_fff(sps, [1,1,1])
+        self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_fff(sps, [1])
         self.interp_fir_filter_xxx_0.declare_sample_delay(0)
         self.blocks_vector_source_x_0_0_0_0 = blocks.vector_source_f((1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1), True, 1, [])
         self.blocks_vector_source_x_0_0_0 = blocks.vector_source_f((1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1), True, 1, [])
@@ -266,23 +266,23 @@ class task2(gr.top_block, Qt.QWidget):
     def set_sps(self, sps):
         self.sps = sps
         self.set_samp_rate(self.symb_rate*self.sps)
+        self.qtgui_eye_sink_x_0.set_samp_per_symbol(self.sps)
         self.root_raised_cosine_filter_0.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_0.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_1.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_2.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
-        self.qtgui_eye_sink_x_0.set_samp_per_symbol(self.sps)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
+        self.qtgui_eye_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.root_raised_cosine_filter_0.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_0.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_1.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
         self.root_raised_cosine_filter_0_2.set_taps(firdes.root_raised_cosine(1, self.samp_rate, self.symb_rate, 0.5, 11*self.sps))
-        self.qtgui_eye_sink_x_0.set_samp_rate(self.samp_rate)
 
 
 

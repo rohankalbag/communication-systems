@@ -101,12 +101,12 @@ blocks:
     minoutbuf: '0'
     noise_type: analog.GR_GAUSSIAN
     seed: '0'
-    type: complex
+    type: float
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1064, 556.0]
+    coordinate: [1256, 572.0]
     rotation: 0
     state: true
 - name: analog_random_source_x_0
@@ -128,7 +128,27 @@ blocks:
     bus_structure: null
     coordinate: [56, 260.0]
     rotation: 0
-    state: true
+    state: enabled
+- name: analog_random_source_x_0_0
+  id: analog_random_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: '4'
+    maxoutbuf: '0'
+    min: '0'
+    minoutbuf: '0'
+    num_samps: '1000'
+    repeat: 'True'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 404.0]
+    rotation: 0
+    state: disabled
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -142,13 +162,13 @@ blocks:
     offset: '0'
     phase: '0'
     samp_rate: 2e6
-    type: complex
+    type: float
     waveform: analog.GR_COS_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [400, 444.0]
+    coordinate: [632, 476.0]
     rotation: 0
     state: true
 - name: blocks_add_xx_0
@@ -160,13 +180,29 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '2'
-    type: complex
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1320, 488.0]
+    coordinate: [1616, 496.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_float_0
+  id: blocks_complex_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1136, 368.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -178,13 +214,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '2'
-    type: complex
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1088, 472.0]
+    coordinate: [1384, 432.0]
     rotation: 0
     state: true
 - name: digital_chunks_to_symbols_xx_0
@@ -204,9 +240,29 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 292.0]
+    coordinate: [352, 204.0]
     rotation: 0
-    state: true
+    state: enabled
+- name: digital_chunks_to_symbols_xx_0_0
+  id: digital_chunks_to_symbols_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dimension: '1'
+    in_type: byte
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    out_type: complex
+    symbol_table: '[-1+1j,1+1j, -1-1j, 1-1j]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 436.0]
+    rotation: 0
+    state: disabled
 - name: interp_fir_filter_xxx_0
   id: interp_fir_filter_xxx
   parameters:
@@ -217,7 +273,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: '[1,1,1]'
+    taps: '1'
     type: ccc
   states:
     bus_sink: false
@@ -338,13 +394,13 @@ blocks:
     rate: '10'
     showports: 'False'
     showrf: 'False'
-    type: complex
+    type: float
     wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1536, 460.0]
+    coordinate: [1832, 468.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -394,12 +450,15 @@ blocks:
 connections:
 - [analog_noise_source_x_0, '0', blocks_add_xx_0, '1']
 - [analog_random_source_x_0, '0', digital_chunks_to_symbols_xx_0, '0']
+- [analog_random_source_x_0_0, '0', digital_chunks_to_symbols_xx_0_0, '0']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
 - [blocks_add_xx_0, '0', qtgui_sink_x_0, '0']
+- [blocks_complex_to_float_0, '0', blocks_multiply_xx_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_add_xx_0, '0']
 - [digital_chunks_to_symbols_xx_0, '0', interp_fir_filter_xxx_0, '0']
+- [digital_chunks_to_symbols_xx_0_0, '0', interp_fir_filter_xxx_0, '0']
 - [interp_fir_filter_xxx_0, '0', root_raised_cosine_filter_0, '0']
-- [rational_resampler_xxx_0, '0', blocks_multiply_xx_0, '0']
+- [rational_resampler_xxx_0, '0', blocks_complex_to_float_0, '0']
 - [root_raised_cosine_filter_0, '0', qtgui_const_sink_x_0, '0']
 - [root_raised_cosine_filter_0, '0', rational_resampler_xxx_0, '0']
 

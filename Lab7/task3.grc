@@ -157,6 +157,23 @@ blocks:
     coordinate: [1456, 720.0]
     rotation: 0
     state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1968, 540.0]
+    rotation: 0
+    state: true
 - name: digital_chunks_to_symbols_xx_0
   id: digital_chunks_to_symbols_xx
   parameters:
@@ -224,7 +241,7 @@ blocks:
     bus_structure: null
     coordinate: [672, 116.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: qtgui_sink_x_0_0
   id: qtgui_sink_x
   parameters:
@@ -251,9 +268,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1240, 444.0]
+    coordinate: [1240, 316.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: qtgui_sink_x_1
   id: qtgui_sink_x
   parameters:
@@ -282,7 +299,7 @@ blocks:
     bus_structure: null
     coordinate: [1936, 692.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -330,6 +347,7 @@ blocks:
 connections:
 - [analog_random_source_x_0, '0', digital_chunks_to_symbols_xx_0, '0']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '1']
+- [blocks_complex_to_real_0, '0', blocks_null_sink_0, '0']
 - [blocks_complex_to_real_0, '0', qtgui_sink_x_1, '0']
 - [blocks_multiply_xx_0, '0', blocks_complex_to_real_0, '0']
 - [digital_chunks_to_symbols_xx_0, '0', interp_fir_filter_xxx_0, '0']
